@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
-  devise_for :users
-  get "/home" => "application#helloWorld"
+  devise_for :users, :controllers => {
+    :registrations => "users/registrations",
+    :sessions => "users/sessions"
+  }
 
-  resources :users
+  resources :tasks  
+  #get "/home" => "application#helloWorld"
+
+  #resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

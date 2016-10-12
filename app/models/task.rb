@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
-  has_many :activities
+  #Relations
+  belongs_to :user
+  #Relations end
 
 end
