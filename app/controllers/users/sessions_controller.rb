@@ -1,8 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
   
-  skip_before_filter :verify_authenticity_token#, :if => Proc.new { |controller| controller.request.format == 'application/json' }
-
+  #skip_before_filter :verify_authenticity_token#, :if => Proc.new { |controller| controller.request.format == 'application/json' }
+  skip_before_filter :authenticate_user_from_token!, :only =>[:create]
   # GET /resource/sign_in
   # def new
   #   super

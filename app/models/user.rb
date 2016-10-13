@@ -12,7 +12,10 @@ class User < ActiveRecord::Base
   has_many :tasks
   #Relations end
 
-  attr_accessor :current_user
+  #attr_accessor :current_user
+
+  FIELDS_RENDERED = [:id, :name, :email]
+  METHODS_RENDERED = []
 
   def ensure_authentication_token
     if authentication_token.blank?
@@ -23,6 +26,13 @@ class User < ActiveRecord::Base
   def reset_authentication_token
     self.authentication_token = generate_authentication_token
     self.save(:validate =>false)
+  end
+
+  def as_json(options={})
+    super(
+      :methods => User::METHODS_RENDERED,
+      :only => User::FIELDS_RENDERED
+    )
   end
 
   private

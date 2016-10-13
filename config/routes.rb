@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     :sessions => "users/sessions"
   }
 
-  resources :tasks  
+  resources :tasks
+  resources :users
   #get "/home" => "application#helloWorld"
 
   #resources :users

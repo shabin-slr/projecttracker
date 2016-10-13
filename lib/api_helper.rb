@@ -15,5 +15,15 @@ module ApiHelper
     end
     render :status => 401, :json => {errors: ["Invalid Auth token"]} if @user.blank?
   end
+
+  def read_fields_to_render
+    @fields_to_render = []
+    if(params[:fields] && params[:fields].length)
+      params[:fields].map! do |str|
+        str.to_sym
+      end
+      @fields_to_render = params[:fields]
+    end
+  end
   
 end

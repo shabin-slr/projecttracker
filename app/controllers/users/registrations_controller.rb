@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
   
   #skip_before_action :authenticate_user!, :only =>[:create]
-  skip_before_filter :verify_authenticity_token, :if => Proc.new { |controller| controller.request.format == 'application/json' }
+  skip_before_filter :authenticate_user_from_token!, :only =>[:create]
 
 
   #POST users/sign_up

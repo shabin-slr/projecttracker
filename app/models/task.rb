@@ -4,4 +4,29 @@ class Task < ActiveRecord::Base
   belongs_to :user
   #Relations end
 
+  #Validations
+  validates :name, presence: true
+  validates :description, presence: true
+
+  FIELDS_RENDERED = [:id, :name, :description, :created_at, :updated_at]
+  METHODS_RENDERED = []
+
+  # def as_json(options={})
+  #   super(
+  #     :methods => Task::METHODS_RENDERED,
+  #     :only => Task::FIELDS_RENDERED,
+  #     :include => [
+  #       {
+  #         :user =>
+  #         {
+  #           :only => User::FIELDS_RENDERED,
+  #           :methods => User::METHODS_RENDERED
+  #         }
+  #       }
+  #     ]
+  #   )
+  # end
+
+
+
 end
