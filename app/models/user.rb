@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   #Relations
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   #Relations end
 
   #attr_accessor :current_user
@@ -28,12 +28,12 @@ class User < ActiveRecord::Base
     self.save(:validate =>false)
   end
 
-  def as_json(options={})
-    super(
-      :methods => User::METHODS_RENDERED,
-      :only => User::FIELDS_RENDERED
-    )
-  end
+  # def as_json(options={})
+  #   super(
+  #     :methods => User::METHODS_RENDERED,
+  #     :only => User::FIELDS_RENDERED
+  #   )
+  # end
 
   private
   # Generate auth token

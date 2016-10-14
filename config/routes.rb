@@ -5,8 +5,16 @@ Rails.application.routes.draw do
     :sessions => "users/sessions"
   }
 
-  resources :tasks
   resources :users
+
+  resources :tasks
+
+  get "tasks/:id/activities" => "activities#index"
+  post "tasks/:id/activities" => "activities#create"
+  put "tasks/:id/activities/:activity_id" => "activities#update"
+  delete "tasks/:id/activities" => "activities#destroy"
+
+
   #get "/home" => "application#helloWorld"
 
   #resources :users

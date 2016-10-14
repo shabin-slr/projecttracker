@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   include ApiHelper
+  include TaskHelper
 
   #skip_before_filter :verify_authenticity_token, :if => Proc.new { |controller| controller.request.format == 'application/json' }
   before_filter :get_task, :only => [:update, :delete, :destroy, :show]
@@ -12,7 +13,7 @@ class TasksController < ApplicationController
     @task.user_id = @current_user.id
     @task.save
     # @task = Task.new(task_params)
-    render :status => :ok, :json => {:message => @task}
+    render :status => :ok, :json => {:task => @task.as_json(1,2,3)}
   end
 
   #GET /tasks
@@ -92,13 +93,6 @@ class TasksController < ApplicationController
   def task_params
     puts params.to_s
     params.required(:task).permit(:name,:description,:user_id)
-  end
-
-  def get_task
-    @task = Task.find_by_id(params[:id])
-    if @task == nil
-      render :status => :not_found, :json => {:message => "Task Not Found"}
-    end
   end
 
   def validate_task_belongs_to_current_user
