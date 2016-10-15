@@ -4,8 +4,8 @@ class ActivitiesController < ApplicationController
   include TaskHelper
   include ActivityHelper
 
-  before_filter :get_task, :only => [:create, :index, :destroy, :update]
-  before_filter :get_activity, :except=>[:create]
+  before_filter :get_task#, :only => [:create, :index, :destroy, :update]
+  before_filter :get_activity, :except=>[:create, :index]
 
   def create
     @activity = Activity.new(activity_params)
@@ -28,8 +28,13 @@ class ActivitiesController < ApplicationController
     render :status => :ok, :json => {:activities => activities.as_json}
   end
 
-  def delete
+  def show
+    render :status => :ok, :json => {:activity => @activity.as_json}
+  end
 
+  def destroy
+    @activity.destroy
+    render :status => :ok, :json => {:activity=> @activity.as_json()}
   end
 
   private

@@ -12,22 +12,22 @@ class Task < ActiveRecord::Base
   FIELDS_RENDERED = [:id, :name, :description, :created_at, :updated_at]
   METHODS_RENDERED = []
 
-  def as_json(options={})
-    puts options
-    super(
-      :methods => Task::METHODS_RENDERED,
-      :only => Task::FIELDS_RENDERED,
-      :include => [
-        {
-          :user =>
-          {
-            :only => User::FIELDS_RENDERED,
-            :methods => User::METHODS_RENDERED
-          }
-        }
-      ]
-    )
-  end
+  # def as_json(options={})
+  #   puts options
+  #   super(
+  #     :methods => Task::METHODS_RENDERED,
+  #     :only => Task::FIELDS_RENDERED,
+  #     :include => [
+  #       {
+  #         :user =>
+  #         {
+  #           :only => User::FIELDS_RENDERED,
+  #           :methods => User::METHODS_RENDERED
+  #         }
+  #       }
+  #     ]
+  #   )
+  # end
 
 
 

@@ -77,6 +77,10 @@ class TasksController < ApplicationController
           :user => {
             :methods => User::METHODS_RENDERED,
             :only => User::FIELDS_RENDERED
+          },
+          :activities =>{
+            :methods => Activity::METHODS_RENDERED,
+            :only => Activity::FIELDS_RENDERED
           }
         }
       )

@@ -4,15 +4,15 @@ Rails.application.routes.draw do
     :registrations => "users/registrations",
     :sessions => "users/sessions"
   }
-
-  resources :users
-
-  resources :tasks
-
+  
+  get "tasks/:id/activities/:activity_id" => "activities#show"
   get "tasks/:id/activities" => "activities#index"
   post "tasks/:id/activities" => "activities#create"
   put "tasks/:id/activities/:activity_id" => "activities#update"
-  delete "tasks/:id/activities" => "activities#destroy"
+  delete "tasks/:id/activities/:activity_id" => "activities#destroy"
+
+  resources :users
+  resources :tasks
 
 
   #get "/home" => "application#helloWorld"
