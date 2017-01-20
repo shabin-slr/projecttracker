@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   #skip_before_action :authenticate_user!, only: [:index]
 
-  before_save :ensure_authentication_token
+  #before_save :ensure_authentication_token
 
   #Relations
   has_many :tasks, dependent: :destroy

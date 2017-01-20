@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014045552) do
+ActiveRecord::Schema.define(version: 20161015055007) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "task_id",     limit: 4
@@ -46,6 +46,10 @@ ActiveRecord::Schema.define(version: 20161014045552) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
     t.string   "authentication_token",   limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
